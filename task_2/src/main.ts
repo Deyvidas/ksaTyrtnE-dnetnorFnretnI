@@ -1,8 +1,7 @@
-import './app.css'
-import App from './App.svelte'
+import './index.scss';
 
-const app = new App({
-  target: document.getElementById('app'),
-})
+import App from './App.svelte';
 
-export default app
+export const app = new App({
+    target: document.getElementById('app'),
+});

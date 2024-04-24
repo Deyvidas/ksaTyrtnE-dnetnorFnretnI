@@ -1,7 +1,13 @@
-import { defineConfig } from 'vite'
-import { svelte } from '@sveltejs/vite-plugin-svelte'
+import { Warning, svelte } from '@sveltejs/vite-plugin-svelte';
+import { defineConfig } from 'vite';
 
-// https://vitejs.dev/config/
+const onWarn = (warning: Warning, handler?: (warning: Warning) => void) => {
+    const { code } = warning;
+    if (code === 'css-unused-selector') return;
+    handler(warning);
+};
+
 export default defineConfig({
-  plugins: [svelte()],
-})
+    plugins: [svelte({ onwarn: onWarn })],
+    envPrefix: 'env_',
+});
